@@ -1,14 +1,14 @@
 #include "../cublib.h"
 
-char *rmspace(char *str)
+char	*rmspace(char *str)
 {
-	char *ret;
-	int newsize;
-	int i;
-	int y;
+	char	*ret;
+	int		newsize;
+	int		i;
+	int		y;
 
 	newsize = ft_strlen(str) * 2;
-	ret = malloc(sizeof(char) *  newsize);
+	ret = malloc(sizeof(char) * newsize);
 	i = 0;
 	y = 0;
 	while (y < newsize - 1)
@@ -26,28 +26,29 @@ char *rmspace(char *str)
 	return (ret);
 }
 
-char *norestrict_remove_s(char *str)
+char	*norestrict_remove_s(char *str)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	while (str[i])
 	{
-			if (str[i] == 'S')
-				str[i] = '3';
-			else if (str[i] == 'N')
-				str[i] = '2';
-			else if (str[i] == 'W')
-				str[i] = '4';
-			else if (str[i] == '2')
-				str[i] = '6';
-			else if (str[i] == 'E')
-				str[i] = '5';	
+		if (str[i] == 'S')
+			str[i] = '3';
+		else if (str[i] == 'N')
+			str[i] = '2';
+		else if (str[i] == 'W')
+			str[i] = '4';
+		else if (str[i] == '2')
+			str[i] = '6';
+		else if (str[i] == 'E')
+			str[i] = '5';
 		i++;
 	}
 	return (str);
 }
 
-int	containspace(char *str)
+int		containspace(char *str)
 {
 	int i;
 
@@ -74,7 +75,7 @@ char	**convmap(char **str)
 	return (str);
 }
 
-char **convspace(char **str)
+char	**convspace(char **str)
 {
 	int i;
 	int y;
