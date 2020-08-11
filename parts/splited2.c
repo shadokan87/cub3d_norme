@@ -1,6 +1,6 @@
 #include "../cublib.h"
 
-int checktop(char *str)
+int		checktop(char *str)
 {
 	int i;
 	int y;
@@ -19,13 +19,13 @@ int checktop(char *str)
 		if (str[i] == ' ')
 			i++;
 		if (!iswall(str[i]))
-				return (0);
+			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int issymbol(char c)
+int		issymbol(char c)
 {
 	if (c == '4')
 		return (1);
@@ -47,7 +47,7 @@ int issymbol(char c)
 void	lineisok(char *str, t_var *var)
 {
 	int i;
-	
+
 	i = 0;
 	if (str[i] && str[i] == ' ')
 	{
@@ -55,20 +55,20 @@ void	lineisok(char *str, t_var *var)
 			i++;
 	}
 	if (!iswall(str[i]))
-		closegame(var, "MaP_NOT_CLOsEd");	
+		closegame(var, "MaP_NOT_CLOsEd");
 	while (str[i])
 	{
 		if (str[i] == ' ')
 			i++;
 		if (!issymbol(str[i]))
-			closegame(var,"MaP_sYMBOL_UNKNOwN");
+			closegame(var, "MaP_sYMBOL_UNKNOwN");
 		i++;
 	}
 	if (!iswall(str[i - 1]))
 		closegame(var, "MaP_NOT_CLOsEd");
 }
 
-void checkmiddle(char **str, t_var *var)
+void	checkmiddle(char **str, t_var *var)
 {
 	int i;
 	int y;
@@ -82,7 +82,7 @@ void checkmiddle(char **str, t_var *var)
 	}
 }
 
-void checkmap(char **str, t_var *var)
+void	checkmap(char **str, t_var *var)
 {
 	int i;
 

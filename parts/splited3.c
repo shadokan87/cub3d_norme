@@ -2,20 +2,20 @@
 
 void	initspritequeue(t_var *var)
 {
-	int i = 0;
-	int y = 0;
-	int z = 0;
+	int i;
+	int y;
+	int z;
 
+	i = -1;
+	y = -1;
+	z = 0;
 	var->spritequeue = malloc(sizeof(int *) * var->spritenum);
-	while (i < var->spritenum)
-	{
+	while (++i < var->spritenum)
 		var->spritequeue[i] = malloc(sizeof(int) * 2);
-		i++;
-	}
-	i = 0;
-	while (y < var->m_height)
+	i = -1;
+	while (++y < var->m_height)
   	{
-    while (i < var->m_width)
+    while (++i < var->m_width)
   	{
 		if (var->map[y][i] == 6)
 		{
@@ -26,10 +26,8 @@ void	initspritequeue(t_var *var)
 			var->spritequeue[z][1] = i;
 			z++;
 		}
-    	i++;
   	}
-  i = 0;
-  y++;
+  i = -1;
   }
 
 }
