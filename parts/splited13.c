@@ -23,7 +23,7 @@ int	nospacegetmapindex(char *str)
 	return (-1);
 }
 
-char *removes(char *str, var_t *var)
+char *removes(char *str, t_var *var)
 {
 	int i = 0;
 
@@ -47,7 +47,7 @@ char *removes(char *str, var_t *var)
 	return (str);
 }
 
-void    getparamfile(int fd, char **line, var_t *var)
+void    getparamfile(int fd, char **line, t_var *var)
 {
     int ret;
 	int i;

@@ -1,6 +1,6 @@
 #include "cublib.h"
 
-void	closegame(var_t *var, char *message)
+void	closegame(t_var *var, char *message)
 {
 	int i;
 
@@ -19,7 +19,7 @@ void	closegame(var_t *var, char *message)
 
 int		main(int argc, char **argv)
 {
-	var_t var;
+	t_var var;
 
 	if (!(argc >= 2 && argc <= 3))
 	{

@@ -63,7 +63,7 @@ int	iswall(char c)
 	return (0);
 }
 
-int	getmapindex(var_t *var)
+int	getmapindex(t_var *var)
 {
 	int i;
 	int j;

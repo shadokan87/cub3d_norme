@@ -1,6 +1,6 @@
 #include "../cublib.h"
 
-void	draw(var_t *var)
+void	draw(t_var *var)
 {
 	draw_info(var);
 	var->color = rgb_int(185, 94, 255);
@@ -9,7 +9,7 @@ void	draw(var_t *var)
 		verline(var, var->x, var->drawstart, var->drawend, var->color);
 }
 
-void	raycast(var_t *var)
+void	raycast(t_var *var)
 {
 	var->x = 0;
 	int i = 0;
@@ -37,7 +37,7 @@ void	raycast(var_t *var)
 	}
 }
 
-void	init_keys(var_t *var, int key_number)
+void	init_keys(t_var *var, int key_number)
 {
 	int *ptr;
 
@@ -50,7 +50,7 @@ void	init_keys(var_t *var, int key_number)
 	}
 }
 
-int		key_pressed(int keycode, var_t *var)
+int		key_pressed(int keycode, t_var *var)
 {
 	if (keycode == 53)
 		closegame(var, "esc_PREssEd");
@@ -69,7 +69,7 @@ int		key_pressed(int keycode, var_t *var)
 	return (0);	
 }
 
-int		key_released(int keycode, var_t *var)
+int		key_released(int keycode, t_var *var)
 {
 	if (keycode == 53)
 		var->esc = 0;

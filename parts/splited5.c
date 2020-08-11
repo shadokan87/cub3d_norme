@@ -1,6 +1,6 @@
 #include "../cublib.h"
 
-void drawbmp (char *filename, var_t *var)
+void drawbmp (char *filename, t_var *var)
 {
 unsigned int *headers;
 int extrabytes;
@@ -21,7 +21,7 @@ closegame(var, "--save done");
 return;
 }
 
-int	screenshot(var_t *var)
+int	screenshot(t_var *var)
 {
 	int i;
 
@@ -37,7 +37,7 @@ int	screenshot(var_t *var)
 	return (1);
 }
 
-int		run(var_t *var)
+int		run(t_var *var)
 {
 	int t_endian;
 	int t_bpp;
@@ -63,14 +63,14 @@ int		run(var_t *var)
 	mlx_put_image_to_window(var->mlx_ptr, var->mlx_win, var->img, 0, 0);
 }
 
-int		start(var_t *var)
+int		start(t_var *var)
 {
 	load_text(var);
 	mlx_loop_hook(var->mlx_ptr, run, (void *)var);
 	mlx_loop(var->mlx_ptr);
 }
 
-int	**copymap(int height, int width, int index, var_t *var)
+int	**copymap(int height, int width, int index, t_var *var)
 {
 	int **map;
 	char **str;

@@ -1,6 +1,6 @@
 #include "../cublib.h"
 
-void getmapfromparamfile(var_t *var)
+void getmapfromparamfile(t_var *var)
 {
 	int i;
 	int index;
@@ -29,7 +29,7 @@ void getmapfromparamfile(var_t *var)
 	initspritequeue(var);
 }
 
-void	checkcolor(var_t *var)
+void	checkcolor(t_var *var)
 {
 	int i = 0;
 	while (i < 3)
@@ -47,7 +47,7 @@ void	checkcolor(var_t *var)
 	}
 }
 
-void	inithextable(var_t *var)
+void	inithextable(t_var *var)
 {
 	int i;
 
@@ -59,7 +59,7 @@ void	inithextable(var_t *var)
 	}
 }
 
-void	initcolormap(var_t *var)
+void	initcolormap(t_var *var)
 {
 	int i;
 
@@ -72,7 +72,7 @@ void	initcolormap(var_t *var)
   	}
 }
 
-void	init_struct(var_t *var, char **argv)
+void	init_struct(t_var *var, char **argv)
 {
 	int fd;
     char *line;

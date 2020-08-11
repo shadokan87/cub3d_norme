@@ -1,6 +1,6 @@
 #include "../cublib.h"
 
-void	initspritequeue(var_t *var)
+void	initspritequeue(t_var *var)
 {
 	int i = 0;
 	int y = 0;
@@ -34,7 +34,7 @@ void	initspritequeue(var_t *var)
 
 }
 
-void duplicate_map(var_t *var, char **str2)
+void duplicate_map(t_var *var, char **str2)
 {
 	char **str;
 	char c;
@@ -85,7 +85,7 @@ int	skip(char ***split)
 	return (0);
 }
 
-char	**getmapstr(var_t *var)
+char	**getmapstr(t_var *var)
 {
 	int width;
 	char *str;

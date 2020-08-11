@@ -25,7 +25,7 @@ int	checkline(char *str, int y)
 	}
 }
 
-int *init_to_fill(var_t *var)
+int *init_to_fill(t_var *var)
 {
 	int *to_fill;
 	int i;

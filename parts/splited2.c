@@ -44,7 +44,7 @@ int issymbol(char c)
 	return (0);
 }
 
-void	lineisok(char *str, var_t *var)
+void	lineisok(char *str, t_var *var)
 {
 	int i;
 	
@@ -68,7 +68,7 @@ void	lineisok(char *str, var_t *var)
 		closegame(var, "MaP_NOT_CLOsEd");
 }
 
-void checkmiddle(char **str, var_t *var)
+void checkmiddle(char **str, t_var *var)
 {
 	int i;
 	int y;
@@ -82,7 +82,7 @@ void checkmiddle(char **str, var_t *var)
 	}
 }
 
-void checkmap(char **str, var_t *var)
+void checkmap(char **str, t_var *var)
 {
 	int i;
 

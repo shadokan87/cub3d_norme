@@ -1,13 +1,13 @@
 #include "../cublib.h"
 
-int	listen_keys(var_t *var)
+int	listen_keys(t_var *var)
 {
 	mlx_hook(var->mlx_win, 2, 2, key_pressed, (void *)var);
 	mlx_key_hook(var->mlx_win, key_released, (void *)var);
 	movement(var);
 }
 
-int	load_text(var_t *var)
+int	load_text(t_var *var)
 {
 	int i;
 	int t_endian;
@@ -82,7 +82,7 @@ void	writeheader(int fd, unsigned int *headers)
 	}
 }
 
-void	writecolor(var_t *var, int extrabytes, int fd)
+void	writecolor(t_var *var, int extrabytes, int fd)
 {
 	int y;
 	int x;

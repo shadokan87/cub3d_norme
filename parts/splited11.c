@@ -1,6 +1,6 @@
 #include "../cublib.h"
 
-void	pixel_put_fd(var_t *var, int color, int fd)
+void	pixel_put_fd(t_var *var, int color, int fd)
 {
 	int blue;
 	int green;
@@ -26,7 +26,7 @@ void	pixel_put_fd(var_t *var, int color, int fd)
 	ft_fprintf(fd, "%c", red);
 }
 
-void	pixel_put(var_t *var, int x, int y, int color)
+void	pixel_put(t_var *var, int x, int y, int color)
 {
 	char *dst;
 
@@ -34,7 +34,7 @@ void	pixel_put(var_t *var, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	verline(var_t *var, int x, int draw_start, int draw_end, int color)
+int	verline(t_var *var, int x, int draw_start, int draw_end, int color)
 {
 	int swap;
 
@@ -58,7 +58,7 @@ int	verline(var_t *var, int x, int draw_start, int draw_end, int color)
 	return (1);
 }
 
-void	init_raycast(var_t *var)
+void	init_raycast(t_var *var)
 {
 	var->s_w = var->s_w;
 	var->s_h = var->s_h;
@@ -71,7 +71,7 @@ void	init_raycast(var_t *var)
 	var->time = 0;
 }
 
-void	step(var_t *var)
+void	step(t_var *var)
 {
 	if (var->raydirx < 0)
 	{

@@ -1,6 +1,6 @@
 #include "../cublib.h"
 
-void	hit(var_t *var)
+void	hit(t_var *var)
 {
 	while (var->hit == 0)
 	{
@@ -29,7 +29,7 @@ void	hit(var_t *var)
 		var->perpwalldist = (var->mapy - var->posy + (1 - var->stepy) / 2) / var->raydiry;	
 }
 
-void	cls(var_t *var)
+void	cls(t_var *var)
 {
 	int x = 0;
 	while (x < var->s_w)
@@ -39,7 +39,7 @@ void	cls(var_t *var)
 	}
 }
 
-void	draw_info(var_t *var)
+void	draw_info(t_var *var)
 {
 	var->lineheight = (int)(var->s_h / var->perpwalldist);
 	var->drawstart = -var->lineheight / 2 + var->s_h / 2;
@@ -50,7 +50,7 @@ void	draw_info(var_t *var)
 		var->drawend = var->s_h - 1;
 }
 
-void	draw_texture(var_t *var)
+void	draw_texture(t_var *var)
 {
 	draw_info(var);
 	int texx;

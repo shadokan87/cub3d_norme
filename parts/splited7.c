@@ -7,7 +7,7 @@ int	move_is_possible(int pos)
 	return (1);
 }
 
-void	fwd_bckwrd(var_t *var)
+void	fwd_bckwrd(t_var *var)
 {
 if (var->w)
     {
@@ -26,7 +26,7 @@ if (var->w)
 	}
 }
 
-void	x_y(var_t *var)
+void	x_y(t_var *var)
 {
 if (var->a)
 	{
@@ -44,7 +44,7 @@ if (var->a)
 	}
 }
 
-void	l_r(var_t *var)
+void	l_r(t_var *var)
 {
 	double old_dir;
 	double old_plane;
@@ -69,7 +69,7 @@ void	l_r(var_t *var)
 	}
 }
 
-int	movement(var_t *var)
+int	movement(t_var *var)
 {
 	fwd_bckwrd(var);
 	x_y(var);

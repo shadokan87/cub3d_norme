@@ -1,7 +1,7 @@
 #include "../cublib.h"
 
 
-int *cpy(var_t *var, int *tab)
+int *cpy(t_var *var, int *tab)
 {
 	int *ret = malloc(sizeof(int) * 2);
 	ret[0] = tab[0];
@@ -9,7 +9,7 @@ int *cpy(var_t *var, int *tab)
 	return (ret);
 }
 
-double	*sortqueue(var_t *var, double *dist)
+double	*sortqueue(t_var *var, double *dist)
 {
 	int i;
 	double swap;
@@ -34,7 +34,7 @@ double	*sortqueue(var_t *var, double *dist)
 	return (dist);
 }
 
-double	*getdist(var_t *var)
+double	*getdist(t_var *var)
 {
 	int i;
 	double *dist;
@@ -56,7 +56,7 @@ double	*getdist(var_t *var)
 	return (sortqueue(var, dist));
 }
 
-void	init_sprite_var(var_t *var, int sx, int sy)
+void	init_sprite_var(t_var *var, int sx, int sy)
 {
 	var->vmove = 0.5;
 	var->spritex = sx - var->posx;
@@ -82,7 +82,7 @@ void	init_sprite_var(var_t *var, int sx, int sy)
 		var->drawendx = var->s_w - 1;
 }
 
-void	draw_sprite(var_t *var, int sx, int sy)
+void	draw_sprite(t_var *var, int sx, int sy)
 {
 		int x;
 		int y;

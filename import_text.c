@@ -12,9 +12,9 @@ typedef struct var_s
     int F_color[3];
     int C_color[3];
     char **ParamSliced;
-}   var_t;
+}   t_var;
 
-void    getParamFile(int fd, char **line, var_t *var)
+void    getParamFile(int fd, char **line, t_var *var)
 {
     int ret;
 
@@ -40,7 +40,7 @@ int  ft_strcmp(char *str, char *str2)
     return (1);
 }
 
-void    fill_color(var_t *var, int i)
+void    fill_color(t_var *var, int i)
 {
     if (ft_strcmp(var->ParamSliced[i], "F"))
     {
@@ -54,7 +54,7 @@ void    fill_color(var_t *var, int i)
     var->C_color[2] = ft_atoi(ft_split(var->ParamSliced[i + 1], ',')[2]);
 }
 
-void   fillLoopParams(var_t *var)
+void   fillLoopParams(t_var *var)
 {
     int i;
 
@@ -89,7 +89,7 @@ int main(int argc, char **argv)
     char *line;
     int i = 0;
     int y = 0;
-    var_t var;
+    t_var var;
     var.paramFile = NULL;
     ret = 0;
     fd = open(argv[1], O_RDONLY);

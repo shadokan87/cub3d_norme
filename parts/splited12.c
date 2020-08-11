@@ -1,6 +1,6 @@
 #include "../cublib.h"
 
-void    fill_color(var_t *var, int i)
+void    fill_color(t_var *var, int i)
 {
     if (ft_strcmp(var->paramsliced[i], "F"))
     {
@@ -14,7 +14,7 @@ void    fill_color(var_t *var, int i)
     var->c_color[2] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[2]);
 }
 
-void   fillloopparams(var_t *var)
+void   fillloopparams(t_var *var)
 {
     int i;
 
@@ -44,7 +44,7 @@ void   fillloopparams(var_t *var)
     }
 } 
 
-int	getred(int rgb, var_t *var)
+int	getred(int rgb, t_var *var)
 {
 	char str[3];
 	char *hex;
@@ -68,7 +68,7 @@ int	getred(int rgb, var_t *var)
 	return (255);
 }
 
-int	getblue(int rgb, var_t *var)
+int	getblue(int rgb, t_var *var)
 {
 	char str[3];
 	char *hex;
@@ -91,7 +91,7 @@ int	getblue(int rgb, var_t *var)
 	return (255);
 }
 
-int	getgreen(int rgb, var_t *var)
+int	getgreen(int rgb, t_var *var)
 {
 	char str[3];
 	char *hex;
