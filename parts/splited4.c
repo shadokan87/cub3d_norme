@@ -25,7 +25,7 @@ int	checkline(char *str, int y)
 	}
 }
 
-int *init_to_fill(t_var *var)
+int	*init_to_fill(t_var *var)
 {
 	int *to_fill;
 	int i;
@@ -41,7 +41,7 @@ int *init_to_fill(t_var *var)
 	return (to_fill);
 }
 
-int getmapheight(char **str)
+int	getmapheight(char **str)
 {
 	int height;
 	int i;
@@ -87,15 +87,14 @@ int	getmapwidth(char **str)
 		{
 			big = ft_strlen(str[i]);
 			index = i;
-		}			
+		}
 		i++;
 	}
 	i = 0;
 	while (str[index][i])
 	{
-		if (!(str[index][i] == ' '))
-			width++;
+		(!(str[index][i] == ' ')) ? width++ : 0;
 		i++;
 	}
-return (width + (spacecount(str[index]) / 2));
+	return (width + (spacecount(str[index]) / 2));
 }
