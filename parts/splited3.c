@@ -1,5 +1,15 @@
 #include "../cublib.h"
 
+static void	initspritequeue2(t_var *var)
+{
+	int i;
+
+	i = -1;
+	var->spritequeue = malloc(sizeof(int *) * var->spritenum);
+	while (++i < var->spritenum)
+		var->spritequeue[i] = malloc(sizeof(int) * 2);
+}
+
 void	initspritequeue(t_var *var)
 {
 	int i;
@@ -9,10 +19,7 @@ void	initspritequeue(t_var *var)
 	i = -1;
 	y = -1;
 	z = 0;
-	var->spritequeue = malloc(sizeof(int *) * var->spritenum);
-	while (++i < var->spritenum)
-		var->spritequeue[i] = malloc(sizeof(int) * 2);
-	i = -1;
+	initspritequeue2(var);
 	while (++y < var->m_height)
   	{
     while (++i < var->m_width)
@@ -32,6 +39,17 @@ void	initspritequeue(t_var *var)
 
 }
 
+static void	duplicate_map2(t_var *var)
+{
+	int i;
+
+	i = -1;
+	var->map = malloc(sizeof(int *) * var->m_height);
+	var->spritenum = 0;
+	while (++i < var->m_height)
+    	var->map[i] = malloc(sizeof(int) * var->m_width);
+}
+
 void duplicate_map(t_var *var, char **str2)
 {
 	char **str;
@@ -40,18 +58,11 @@ void duplicate_map(t_var *var, char **str2)
 	int y;
 	
 	i = 0;
-	y = 0;
-	var->map = malloc(sizeof(int *) * var->m_height);
-	var->spritenum = 0;
-	while (i < var->m_height)
-  	{
-    var->map[i] = malloc(sizeof(int) * var->m_width);
-    i++;
-  	}
-  i = 0;
-  while (y < var->m_height)
+	y = -1;
+	duplicate_map2(var);
+  while (++y < var->m_height)
   {
-    while (i < var->m_width)
+    while (++i < var->m_width)
   	{
 		 str = ft_split(str2[y], ' ');
 		 var->map[y][i] = str[i][0] - '0';
@@ -62,25 +73,9 @@ void duplicate_map(t_var *var, char **str2)
 			var->posx = y + 1.5;
 			var->posy = i + 1;
 		}
-    i++;
   	}
-  i = 0;
-  y++;
+  i = -1;
   }
-}
-
-int	skip(char ***split)
-{
-	char *str = **split;
-	if (str[0] == 'R' || str[0] == 'F'
-	|| str[0] == 'C' || str[0] == 'S')
-		return (1);
-	if ((str[0] == 'S' && str[1] == 'O')
-	|| (str[0] == 'N' && str[1] == 'O')
-	|| (str[0] == 'W' && str[1] == 'E')
-	|| (str[0] == 'E' && str[1] == 'A'))
-		return (1);
-	return (0);
 }
 
 char	**getmapstr(t_var *var)
@@ -89,13 +84,11 @@ char	**getmapstr(t_var *var)
 	char *str;
 	char **split;
 	char *ptr;
-	int i;
 	int z;
 
 	str = ft_strdup(var->paramfile);
 	split = ft_split(str, '\n');
 	width = 0;
-	z = 0;
 	ptr = *split;
 	while (skip(&split))
 	{
@@ -104,29 +97,4 @@ char	**getmapstr(t_var *var)
 	}
 		
 	return (split);
-}
-
-int checkbottom(char *str)
-{
-	int i;
-	int y;
-	int count;
-
-	i = 0;
-	y = 0;
-	count = 0;
-	if (str[i] && str[i] == ' ')
-	{
-		while (str[i] && str[i] == ' ')
-			i++;
-	}
-	while (str[i])
-	{
-		if (str[i] == ' ')
-			i++;
-		if (!iswall(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
 }
