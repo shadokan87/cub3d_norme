@@ -6,14 +6,16 @@ void	draw(t_var *var)
 	var->color = rgb_int(185, 94, 255);
 	if (var->side == 1)
 		var->color = var->color / 2;
-		verline(var, var->x, var->drawstart, var->drawend, var->color);
+	verline(var, var->x, var->drawstart, var->drawend, var->color);
 }
 
 void	raycast(t_var *var)
 {
-	var->x = 0;
-	int i = 0;
-	while (var->x < var->s_w)
+	int i;
+
+	i = 0;
+	var->x = -1;
+	while (++var->x < var->s_w)
 	{
 		var->camerax = 2 * var->x / (double)var->s_w - 1;
 		var->raydirx = var->dirx + var->planex * var->camerax;
@@ -26,14 +28,13 @@ void	raycast(t_var *var)
 		var->spritehit = 0;
 		step(var);
 		hit(var);
-		verline(var, var->x, 0, var->s_h / 2, rgb_int(var->c_color[0], var->c_color[1], var->c_color[2]));
-		verline(var, var->x, var->s_h / 2, var->s_h, rgb_int(var->f_color[0], var->f_color[1], var->f_color[2]));
-		if (var->hit == 1)
-			draw(var);
-		if (var->hit > 1)
-			draw_texture(var);
+		verline(var, var->x, 0, var->s_h / 2,
+		rgb_int(var->c_color[0], var->c_color[1], var->c_color[2]));
+		verline(var, var->x, var->s_h / 2, var->s_h,
+		rgb_int(var->f_color[0], var->f_color[1], var->f_color[2]));
+		var->hit == 1 ? draw(var) : 0;
+		var->hit > 1 ? draw_texture(var) : 0;
 		var->zbuffer[var->x] = var->perpwalldist;
-		var->x++;
 	}
 }
 
@@ -66,7 +67,7 @@ int		key_pressed(int keycode, t_var *var)
 		var->l_r = 1;
 	else if (keycode == 124)
 		var->r_r = 1;
-	return (0);	
+	return (0);
 }
 
 int		key_released(int keycode, t_var *var)
