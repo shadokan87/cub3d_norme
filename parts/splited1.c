@@ -59,7 +59,7 @@ int	containspace(char *str)
 	return (0);
 }
 
-char	**convMap(char **str)
+char	**convmap(char **str)
 {
 	int i;
 

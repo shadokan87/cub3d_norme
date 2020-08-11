@@ -1,8 +1,6 @@
 #ifndef CUBLIB_H
 # define CUBLIB_H
-
 # include <string.h>
-
 # include <unistd.h>
 # include <stdlib.h>
 # include "gnl_working/get_next_line.h"
@@ -11,7 +9,6 @@
 # include <math.h>
 # include <unistd.h>
 # include <stdint.h>
-
 # define ROTSPEED 0.1
 # define MOVESPEED 0.1
 
@@ -191,7 +188,7 @@ void checkmap(char **str, var_t *var);
 char *rmspace(char *str);
 char *norestrict_remove_s(char *str);
 int containspace(char *str);
-char **convMap(char **str);
+char **convmap(char **str);
 char **convspace(char **str);
 void getmapfromparamfile(var_t *var);
 void checkcolor(var_t *var);

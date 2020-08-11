@@ -11,7 +11,7 @@ void getmapfromparamfile(var_t *var)
 	index = getmapindex(var);
 	i = 0;
 	if (containspace(str[0]))
-		str = convMap(str);
+		str = convmap(str);
 	checkmap(str, var);
 	var->m_width = getmapwidth(str);
 	ft_fprintf(1, "width = %d\n", var->m_width);
