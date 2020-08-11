@@ -1,11 +1,11 @@
 #include "../cublib.h"
 
-void getmapfromparamfile(t_var *var)
+void		getmapfromparamfile(t_var *var)
 {
-	int i;
-	int index;
-	char **str;
-	int newsize;
+	int		i;
+	int		index;
+	char	**str;
+	int		newsize;
 
 	str = getmapstr(var);
 	index = getmapindex(var);
@@ -18,7 +18,7 @@ void getmapfromparamfile(t_var *var)
 	if (!(var->m_height = getmapheight(str)))
 		closegame(var, "MaP_NOT_CLOsEd");
 	str = convspace(str);
-		while (str[i])
+	while (str[i])
 	{
 		printf("%s\n", str[i]);
 		i++;
@@ -29,25 +29,27 @@ void getmapfromparamfile(t_var *var)
 	initspritequeue(var);
 }
 
-void	checkcolor(t_var *var)
+void		checkcolor(t_var *var)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (i < 3)
 	{
 		if (!(var->f_color[i] > -1 && var->f_color[i] < 256))
 			closegame(var, "COLOR_ERROR");
-			i++;
+		i++;
 	}
 	i = 0;
 	while (i < 3)
 	{
 		if (!(var->c_color[i] > -1 && var->c_color[i] < 256))
 			closegame(var, "COLOR_ERROR");
-			i++;
+		i++;
 	}
 }
 
-void	inithextable(t_var *var)
+void		inithextable(t_var *var)
 {
 	int i;
 
@@ -59,46 +61,38 @@ void	inithextable(t_var *var)
 	}
 }
 
-void	initcolormap(t_var *var)
+static void	init_struct2(t_var *var)
 {
-	int i;
-
-	i = 0;
-	var->colormap = malloc(sizeof(int *) * var->m_height);
-	while (i < var->m_height)
-  	{
-    var->colormap[i] = malloc(sizeof(int) * var->m_width);
-    i++;
-  	}
-}
-
-void	init_struct(t_var *var, char **argv)
-{
-	int fd;
-    char *line;
-    int i;
-
-	i = -1;
 	inithextable(var);
 	var->posx = -1;
 	var->posy = -1;
-    var->paramfile = NULL;
+	var->paramfile = NULL;
 	var->paramsliced = NULL;
 	var->screenshot = 0;
 	var->mlx_win = NULL;
 	var->mlx_ptr = NULL;
 	var->addr = NULL;
+}
+
+void		init_struct(t_var *var, char **argv)
+{
+	int		fd;
+	char	*line;
+	int		i;
+
+	i = -1;
+	init_struct2(var);
 	if (ft_strcmp(argv[1], "--save"))
 		var->screenshot = 1;
-    fd = open(argv[var->screenshot == 1 ? 2 : 1], O_RDONLY);
-    getparamfile(fd, &line, var);
+	fd = open(argv[var->screenshot == 1 ? 2 : 1], O_RDONLY);
+	getparamfile(fd, &line, var);
 	getmapfromparamfile(var);
 	initcolormap(var);
-    while (var->paramfile[++i])
+	while (var->paramfile[++i])
 		var->paramfile[i] == '\n' ? (var->paramfile[i] = ' ') : 0;
-    var->paramsliced = ft_split(var->paramfile, ' ');
-    if (!(var->text_paths = malloc(sizeof(char *) * 9)))
-        return ;
+	var->paramsliced = ft_split(var->paramfile, ' ');
+	if (!(var->text_paths = malloc(sizeof(char *) * 9)))
+		return ;
 	fillloopparams(var);
 	checkcolor(var);
 }
