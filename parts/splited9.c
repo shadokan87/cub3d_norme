@@ -2,31 +2,29 @@
 
 void	hit(t_var *var)
 {
-	while (var->hit == 0)
+	if (!var->hit && var->sidedistx < var->sidedisty)
 	{
-		if (var->sidedistx < var->sidedisty)
-		{
-			var->sidedistx += var->deltadistx;
-			var->mapx += var->stepx;
-			var->side = 0;
-		}
-		else
-		{
-			var->sidedisty += var->deltadisty;
-			var->mapy += var->stepy;
-			var->side = 1;
-		}
-		if (var->map[var->mapx][var->mapy] > 0)
-		{
-			var->hit = var->map[var->mapx][var->mapy];
-			var->wallx = var->hit;
-		}
+		var->sidedistx += var->deltadistx;
+		var->mapx += var->stepx;
+		var->side = 0;
 	}
-	if (var->side == 0)
-		var->perpwalldist = (var->mapx - var->posx + (1 - 
+	else if (!var->hit)
+	{
+		var->sidedisty += var->deltadisty;
+		var->mapy += var->stepy;
+		var->side = 1;
+	}
+	if (!var->hit && var->map[var->mapx][var->mapy] > 0)
+	{
+		var->hit = var->map[var->mapx][var->mapy];
+		var->wallx = var->hit;
+	}
+	if (var->hit && var->side == 0)
+		var->perpwalldist = (var->mapx - var->posx + (1 -
 		var->stepx) / 2) / var->raydirx;
-	else
-		var->perpwalldist = (var->mapy - var->posy + (1 - var->stepy) / 2) / var->raydiry;	
+	else if (var->hit)
+		var->perpwalldist = (var->mapy - var->posy
+		+ (1 - var->stepy) / 2) / var->raydiry;	
 }
 
 void	cls(t_var *var)
@@ -52,38 +50,31 @@ void	draw_info(t_var *var)
 
 void	draw_texture(t_var *var)
 {
-	draw_info(var);
 	int texx;
 	int texy;
 	double wallx;
 	double step;
 	double texpos;
-		
+
+	draw_info(var);		
 	if (var->side == 0)
 		wallx = var->posy + var->perpwalldist * var->raydiry;
 	else
 		wallx = var->posx + var->perpwalldist * var->raydirx;
 	wallx -= floor(wallx);
-
 	texx = (int)(wallx * (double)var->tex_w);
-	if (var->side == 0 && var->raydirx > 0)
-		texx = var->tex_w - texx - 1;
+	(var->side == 0 && var->raydirx > 0) ? texx = var->tex_w - texx - 1 : 0;
 	if (var->side == 1 && var->raydiry < 0)
 		texx = var->tex_w - texx - 1;
-	
 	step = 1.0 * var->tex_h / var->lineheight;
 	texpos = (var->drawstart - var->s_h / 2 + var->lineheight / 2) * step;
-	char *dst;
-	int color;
 	while (var->drawstart < var->drawend)
 	{
-		dst = var->addr + (var->drawstart * var->line + var->x * (var->bpp / 8));
 		texy = (int)texpos;
 		texpos += step;
 		pixel_put(var, var->x, var->drawstart, var->loaded_addr[var->hit][64 * texy + texx]);
 		var->drawstart++;
 	}
-
 }
 
 int	convhex(char *hex)
@@ -94,9 +85,7 @@ int	convhex(char *hex)
 	while (!(ft_strcmp(hex, ft_putnbr_base(i, HEXD))))
 		{
 			if (i > 255)
-			{
 				return (255);
-			}
 			i++;
 		}
 	return (i);
