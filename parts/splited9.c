@@ -2,27 +2,30 @@
 
 void	hit(t_var *var)
 {
-	if (!var->hit && var->sidedistx < var->sidedisty)
+	while (var->hit == 0)
 	{
-		var->sidedistx += var->deltadistx;
-		var->mapx += var->stepx;
-		var->side = 0;
+		if (var->sidedistx < var->sidedisty)
+		{
+			var->sidedistx += var->deltadistx;
+			var->mapx += var->stepx;
+			var->side = 0;
+		}
+		else
+		{
+			var->sidedisty += var->deltadisty;
+			var->mapy += var->stepy;
+			var->side = 1;
+		}
+		if (var->map[var->mapx][var->mapy] > 0)
+		{
+			var->hit = var->map[var->mapx][var->mapy];
+			var->wallx = var->hit;
+		}
 	}
-	else if (!var->hit)
-	{
-		var->sidedisty += var->deltadisty;
-		var->mapy += var->stepy;
-		var->side = 1;
-	}
-	if (!var->hit && var->map[var->mapx][var->mapy] > 0)
-	{
-		var->hit = var->map[var->mapx][var->mapy];
-		var->wallx = var->hit;
-	}
-	if (var->hit && var->side == 0)
+	if (var->side == 0)
 		var->perpwalldist = (var->mapx - var->posx + (1 -
 		var->stepx) / 2) / var->raydirx;
-	else if (var->hit)
+	else
 		var->perpwalldist = (var->mapy - var->posy
 		+ (1 - var->stepy) / 2) / var->raydiry;	
 }
