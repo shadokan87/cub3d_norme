@@ -52,7 +52,7 @@ int	verline(t_var *var, int x, int draw_start, int draw_end)
 		draw_end = var->s_h - 1;
 	while (draw_start < draw_end)
 	{
-		pixel_put(var, x, draw_start, var->verlinecolor);
+		pixel_put(var, x, draw_start, var->vc);
 		draw_start++;
 	}
 	return (1);
