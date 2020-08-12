@@ -122,7 +122,6 @@ int				rgb_int(int red, int green, int blue);
 char			*remove_extraspaces(char *str);
 int				iswall(char c);
 int				getmapindex(t_var *var);
-int				ft_tolower(int c);
 int				nospacegetmapindex(char *str);
 char			*removes(char *str, t_var *var);
 void			getparamfile(int fd, char **line, t_var *var);
