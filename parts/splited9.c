@@ -8,12 +8,13 @@ void	hit(t_var *var)
 		{
 			var->sidedistx += var->deltadistx;
 			var->mapx += var->stepx;
-			var->side = var->sidedistx < var->sidedisty ? 0 : 1;
+			var->side = 0;
 		}
 		else
 		{
 			var->sidedisty += var->deltadisty;
 			var->mapy += var->stepy;
+			var->side = 1;
 		}
 		if (var->map[var->mapx][var->mapy] > 0)
 		{
@@ -57,7 +58,7 @@ void	draw_texture(t_var *var)
 	double	step;
 	double	texpos;
 
-	draw_info(var);
+	draw_info(var);		
 	if (var->side == 0)
 		wallx = var->posy + var->perpwalldist * var->raydiry;
 	else
@@ -65,7 +66,8 @@ void	draw_texture(t_var *var)
 	wallx -= floor(wallx);
 	texx = (int)(wallx * (double)var->tex_w);
 	(var->side == 0 && var->raydirx > 0) ? texx = var->tex_w - texx - 1 : 0;
-	texx = var->side == 1 && var->raydiry < 0 ? var->tex_w - texx - 1 : texx;
+	if (var->side == 1 && var->raydiry < 0)
+		texx = var->tex_w - texx - 1;
 	step = 1.0 * var->tex_h / var->lineheight;
 	texpos = (var->drawstart - var->s_h / 2 + var->lineheight / 2) * step;
 	while (var->drawstart < var->drawend)
@@ -78,7 +80,7 @@ void	draw_texture(t_var *var)
 	}
 }
 
-int		convhex(char *hex)
+int	convhex(char *hex)
 {
 	int i;
 
