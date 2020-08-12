@@ -34,8 +34,9 @@ void	cls(t_var *var)
 	int x;
 
 	x = -1;
+	var->vc = 0;
 	while (++x < var->s_w)
-		verline(var, x, 0, var->s_h, 0);
+		verline(var, x, 0, var->s_h);
 }
 
 void	draw_info(t_var *var)

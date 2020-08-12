@@ -34,7 +34,7 @@ void	pixel_put(t_var *var, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	verline(t_var *var, int x, int draw_start, int draw_end, int color)
+int	verline(t_var *var, int x, int draw_start, int draw_end)
 {
 	int swap;
 
@@ -52,7 +52,7 @@ int	verline(t_var *var, int x, int draw_start, int draw_end, int color)
 		draw_end = var->s_h - 1;
 	while (draw_start < draw_end)
 	{
-		pixel_put(var, x, draw_start, color);
+		pixel_put(var, x, draw_start, var->verlinecolor);
 		draw_start++;
 	}
 	return (1);

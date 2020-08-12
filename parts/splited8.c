@@ -28,10 +28,10 @@ void	raycast(t_var *var)
 		var->spritehit = 0;
 		step(var);
 		hit(var);
-		verline(var, var->x, 0, var->s_h / 2,
-		rgb_int(var->c_color[0], var->c_color[1], var->c_color[2]));
-		verline(var, var->x, var->s_h / 2, var->s_h,
-		rgb_int(var->f_color[0], var->f_color[1], var->f_color[2]));
+		var->vc = rgb_int(var->c_color[0], var->c_color[1], var->c_color[2]);
+		verline(var, var->x, 0, var->s_h / 2);
+		var->vc = rgb_int(var->f_color[0], var->f_color[1], var->f_color[2]);
+		verline(var, var->x, var->s_h / 2, var->s_h);
 		var->hit == 1 ? draw(var) : 0;
 		var->hit > 1 ? draw_texture(var) : 0;
 		var->zbuffer[var->x] = var->perpwalldist;
