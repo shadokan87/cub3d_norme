@@ -8,13 +8,12 @@ void	hit(t_var *var)
 		{
 			var->sidedistx += var->deltadistx;
 			var->mapx += var->stepx;
-			var->side = 0;
+			var->side = var->sidedistx < var->sidedisty ? 0 : 1;
 		}
 		else
 		{
 			var->sidedisty += var->deltadisty;
 			var->mapy += var->stepy;
-			var->side = 1;
 		}
 		if (var->map[var->mapx][var->mapy] > 0)
 		{
@@ -26,18 +25,17 @@ void	hit(t_var *var)
 		var->perpwalldist = (var->mapx - var->posx + (1 -
 		var->stepx) / 2) / var->raydirx;
 	else
-		var->perpwalldist = (var->mapy - var->posy
-		+ (1 - var->stepy) / 2) / var->raydiry;	
+		var->perpwalldist = (var->mapy - var->posy + (1 -
+		var->stepy) / 2) / var->raydiry;
 }
 
 void	cls(t_var *var)
 {
-	int x = 0;
-	while (x < var->s_w)
-	{
+	int x;
+
+	x = -1;
+	while (++x < var->s_w)
 		verline(var, x, 0, var->s_h, 0);
-		x++;
-	}
 }
 
 void	draw_info(t_var *var)
@@ -53,13 +51,13 @@ void	draw_info(t_var *var)
 
 void	draw_texture(t_var *var)
 {
-	int texx;
-	int texy;
-	double wallx;
-	double step;
-	double texpos;
+	int		texx;
+	int		texy;
+	double	wallx;
+	double	step;
+	double	texpos;
 
-	draw_info(var);		
+	draw_info(var);
 	if (var->side == 0)
 		wallx = var->posy + var->perpwalldist * var->raydiry;
 	else
@@ -67,29 +65,29 @@ void	draw_texture(t_var *var)
 	wallx -= floor(wallx);
 	texx = (int)(wallx * (double)var->tex_w);
 	(var->side == 0 && var->raydirx > 0) ? texx = var->tex_w - texx - 1 : 0;
-	if (var->side == 1 && var->raydiry < 0)
-		texx = var->tex_w - texx - 1;
+	texx = var->side == 1 && var->raydiry < 0 ? var->tex_w - texx - 1 : texx;
 	step = 1.0 * var->tex_h / var->lineheight;
 	texpos = (var->drawstart - var->s_h / 2 + var->lineheight / 2) * step;
 	while (var->drawstart < var->drawend)
 	{
 		texy = (int)texpos;
 		texpos += step;
-		pixel_put(var, var->x, var->drawstart, var->loaded_addr[var->hit][64 * texy + texx]);
+		pixel_put(var, var->x, var->drawstart,
+		var->loaded_addr[var->hit][64 * texy + texx]);
 		var->drawstart++;
 	}
 }
 
-int	convhex(char *hex)
+int		convhex(char *hex)
 {
 	int i;
 
 	i = 0;
 	while (!(ft_strcmp(hex, ft_putnbr_base(i, HEXD))))
-		{
-			if (i > 255)
-				return (255);
-			i++;
-		}
+	{
+		if (i > 255)
+			return (255);
+		i++;
+	}
 	return (i);
 }
