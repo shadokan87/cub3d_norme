@@ -9,7 +9,7 @@ void	fill_color(t_var *var, int i)
 		var->f_color[2] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[2]);
 		return ;
 	}
-	if (!ft_strcmp(var->paramsliced[i], "C"))
+	if (ft_strcmp(var->paramsliced[i], "C"))
 	{
 		var->c_color[0] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[0]);
 		var->c_color[1] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[1]);
