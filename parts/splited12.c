@@ -11,13 +11,12 @@ void	fill_color(t_var *var, int i)
 	}
 	if (!ft_strcmp(var->paramsliced[i], "C"))
 	{
-		if (i <= 8 && i != 7)
-			var->text_paths[i] = NULL;
-		return ;
+		var->c_color[0] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[0]);
+		var->c_color[1] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[1]);
+		var->c_color[2] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[2]);
 	}
-	var->c_color[0] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[0]);
-	var->c_color[1] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[1]);
-	var->c_color[2] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[2]);
+	else if (i <= 8 && i != 7)
+		var->text_paths[i] = NULL;
 }
 
 void	fillloopparams(t_var *var)
@@ -25,7 +24,7 @@ void	fillloopparams(t_var *var)
 	int i;
 
 	i = -1;
-	while (++i && var->paramsliced[i] != NULL)
+	while (var->paramsliced[++i] != NULL)
 	{
 		if (ft_strcmp(var->paramsliced[i], "R"))
 		{
