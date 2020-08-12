@@ -6,7 +6,8 @@ void	draw(t_var *var)
 	var->color = rgb_int(185, 94, 255);
 	if (var->side == 1)
 		var->color = var->color / 2;
-	verline(var, var->x, var->drawstart, var->drawend, var->color);
+	var->vc = var->color;
+	verline(var, var->x, var->drawstart, var->drawend);
 }
 
 void	raycast(t_var *var)
