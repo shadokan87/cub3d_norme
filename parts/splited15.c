@@ -52,3 +52,28 @@ int checkbottom(char *str)
 	}
 	return (1);
 }
+
+void	init_sprite_var(t_var *var, int sx, int sy)
+{
+	var->vmove = 0.5;
+	var->spritex = sx - var->posx;
+	var->spritey = sy - var->posy;
+	var->invdet = 1.0 / (var->planex * var->diry - var->dirx * var->planey);
+	var->transformx = var->invdet *
+	(var->diry * var->spritex - var->dirx * var->spritey);
+	var->transformy = var->invdet *
+	(-var->planey * var->spritex + var->planex * var->spritey);
+	var->vmovescreen = (int)(var->vmove / var->transformy);
+	var->spritescreenx = (int)((var->s_w / 2 *
+	(1 + var->transformx / var->transformy)));
+	var->spriteheight = abs((int)(var->s_h / (var->transformy)));
+	var->drawstarty = -var->spriteheight / 2 + var->s_h / 2 + var->vmovescreen;
+	(var->drawstarty < 0) ? var->drawstarty = 0 : 0;
+	var->drawendy = var->spriteheight / 2 + var->s_h / 2 + var->vmovescreen;
+	(var->drawendy >= var->s_h) ? var->drawendy = var->s_h - 1 : 0;
+	var->spritewidth = abs((int)(var->s_h / (var->transformy)));
+	var->drawstartx = -var->spritewidth / 2 + var->spritescreenx;
+	(var->drawstartx < 0) ? var->drawstartx = 0 : 0;
+	var->drawendx = var->spritewidth / 2 + var->spritescreenx;
+	(var->drawendx >= var->s_w) ? var->drawendx = var->s_w - 1 : 0;
+}
