@@ -17,7 +17,7 @@ void	pixel_put_fd(t_var *var, int color, int fd)
 		green = 255;
 	if (green < 0)
 		green = 0;
-    if (blue > 255)
+	if (blue > 255)
 		blue = 255;
 	if (blue < 0)
 		blue = 0;
@@ -34,7 +34,7 @@ void	pixel_put(t_var *var, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	verline(t_var *var, int x, int draw_start, int draw_end)
+int		verline(t_var *var, int x, int draw_start, int draw_end)
 {
 	int swap;
 
@@ -63,7 +63,8 @@ void	init_raycast(t_var *var)
 	var->s_w = var->s_w;
 	var->s_h = var->s_h;
 	var->img = mlx_new_image(var->mlx_ptr, var->s_w, var->s_h);
-	var->addr = mlx_get_data_addr(var->img, &var->bpp, &var->line, &var->endian);
+	var->addr = mlx_get_data_addr(var->img,
+	&var->bpp, &var->line, &var->endian);
 	var->dirx = -1;
 	var->diry = 0;
 	var->planex = 0;
