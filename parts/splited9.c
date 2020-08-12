@@ -4,17 +4,16 @@ void	hit(t_var *var)
 {
 	while (var->hit == 0)
 	{
+		var->side = (var->sidedistx < var->sidedisty) ? 0 : 1;
 		if (var->sidedistx < var->sidedisty)
 		{
 			var->sidedistx += var->deltadistx;
 			var->mapx += var->stepx;
-			var->side = 0;
 		}
 		else
 		{
 			var->sidedisty += var->deltadisty;
 			var->mapy += var->stepy;
-			var->side = 1;
 		}
 		if (var->map[var->mapx][var->mapy] > 0)
 		{
