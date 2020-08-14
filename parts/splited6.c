@@ -5,9 +5,10 @@ int				listen_keys(t_var *var)
 	mlx_hook(var->mlx_win, 2, 2, key_pressed, (void *)var);
 	mlx_key_hook(var->mlx_win, key_released, (void *)var);
 	movement(var);
+	return (1);
 }
 
-int				load_text(t_var *var)
+void			load_text(t_var *var)
 {
 	int i;
 	int t_endian;
@@ -15,9 +16,9 @@ int				load_text(t_var *var)
 
 	i = 2;
 	if (!(var->loaded_text = malloc(sizeof(int *) * 9)))
-		return (0);
+		return ;
 	if (!(var->loaded_addr = malloc(sizeof(int *) * 9)))
-		return (0);
+		return ;
 	while (i <= 6)
 	{
 		if (var->text_paths[i] && (fd = open(var->text_paths[i],

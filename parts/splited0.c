@@ -5,7 +5,6 @@ void		getmapfromparamfile(t_var *var)
 	int		i;
 	int		index;
 	char	**str;
-	int		newsize;
 
 	str = getmapstr(var);
 	index = getmapindex(var);
@@ -20,7 +19,7 @@ void		getmapfromparamfile(t_var *var)
 	str = convspace(str);
 	while (str[i])
 	{
-		printf("%s\n", str[i]);
+		ft_fprintf(1, "%s\n", str[i]);
 		i++;
 	}
 	duplicate_map(var, str);

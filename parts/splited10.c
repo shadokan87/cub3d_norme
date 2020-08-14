@@ -4,7 +4,8 @@ int			*cpy(t_var *var, int *tab)
 {
 	int *ret;
 
-	if (!(malloc(sizeof(int) * 2)))
+	var->t_bpp = var->t_bpp;
+	if (!(ret = malloc(sizeof(int) * 2)))
 		return (0);
 	ret[0] = tab[0];
 	ret[1] = tab[1];
@@ -40,8 +41,6 @@ double		*getdist(t_var *var)
 {
 	int		i;
 	double	*dist;
-	double	swap;
-	int		swap2;
 
 	dist = (double *)malloc(sizeof(double) * var->spritenum);
 	var->spriteorder = malloc(sizeof(int) * var->spritenum);
@@ -75,8 +74,6 @@ void		draw_sprite(t_var *var, int sx, int sy)
 {
 	int	x;
 	int	y;
-	int	color;
-	int	d;
 
 	init_sprite_var(var, sx, sy);
 	x = var->drawstartx - 1;

@@ -23,6 +23,7 @@ int	checkline(char *str, int y)
 			return (0);
 		i++;
 	}
+	return (1);
 }
 
 int	*init_to_fill(t_var *var)

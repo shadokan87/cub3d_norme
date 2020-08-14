@@ -52,7 +52,6 @@ static void	duplicate_map2(t_var *var)
 void		duplicate_map(t_var *var, char **str2)
 {
 	char	**str;
-	char	c;
 	int		i;
 	int		y;
 
@@ -83,7 +82,6 @@ char		**getmapstr(t_var *var)
 	char	*str;
 	char	**split;
 	char	*ptr;
-	int		z;
 
 	str = ft_strdup(var->paramfile);
 	split = ft_split(str, '\n');

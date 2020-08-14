@@ -40,9 +40,6 @@ int		screenshot(t_var *var)
 
 int		run(t_var *var)
 {
-	int t_endian;
-	int t_bpp;
-	int t_line;
 	int i;
 
 	i = -1;
@@ -64,6 +61,7 @@ int		run(t_var *var)
 		var->spritequeue[var->spriteorder[i]][1]);
 	}
 	mlx_put_image_to_window(var->mlx_ptr, var->mlx_win, var->img, 0, 0);
+	return (1);
 }
 
 int		start(t_var *var)
@@ -71,13 +69,13 @@ int		start(t_var *var)
 	load_text(var);
 	mlx_loop_hook(var->mlx_ptr, run, (void *)var);
 	mlx_loop(var->mlx_ptr);
+	return (1);
 }
 
 int		**copymap(int height, int width, int index, t_var *var)
 {
 	int		**map;
 	char	**str;
-	char	*tmp;
 	int		i;
 	int		y;
 

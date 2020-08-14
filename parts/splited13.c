@@ -45,8 +45,6 @@ void	getparamfile(int fd, char **line, t_var *var)
 {
 	int		ret;
 	int		i;
-	char	*to_free;
-	char	*str;
 
 	ret = 0;
 	i = 0;

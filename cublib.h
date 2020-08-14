@@ -158,7 +158,7 @@ void			x_y(t_var *var);
 void			l_r(t_var *var);
 int				movement(t_var *var);
 int				listen_keys(t_var *var);
-int				load_text(t_var *var);
+void				load_text(t_var *var);
 unsigned int	*getheader(int width, int height, int paddedsize);
 void			writeheader(int fd, unsigned int *headers);
 void			writecolor(t_var *var, int extrabytes, int fd);
