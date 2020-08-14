@@ -1,7 +1,7 @@
 
 #include "../cublib.h"
 
-void	initcolormap(t_var *var)
+void		initcolormap(t_var *var)
 {
 	int i;
 
@@ -14,9 +14,11 @@ void	initcolormap(t_var *var)
 	}
 }
 
-int	skip(char ***split)
+int			skip(char ***split)
 {
-	char *str = **split;
+	char *str;
+
+	str = **split;
 	if (str[0] == 'R' || str[0] == 'F'
 	|| str[0] == 'C' || str[0] == 'S')
 		return (1);
@@ -28,7 +30,7 @@ int	skip(char ***split)
 	return (0);
 }
 
-int checkbottom(char *str)
+int			checkbottom(char *str)
 {
 	int i;
 	int y;
@@ -53,7 +55,7 @@ int checkbottom(char *str)
 	return (1);
 }
 
-void	init_sprite_var(t_var *var, int sx, int sy)
+void		init_sprite_var(t_var *var, int sx, int sy)
 {
 	var->vmove = 0.5;
 	var->spritex = sx - var->posx;
