@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cublib.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:43:52 by motoure           #+#    #+#             */
+/*   Updated: 2020/08/14 13:43:54 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBLIB_H
 # define CUBLIB_H
 # include <string.h>
@@ -158,7 +170,7 @@ void			x_y(t_var *var);
 void			l_r(t_var *var);
 int				movement(t_var *var);
 int				listen_keys(t_var *var);
-void				load_text(t_var *var);
+void			load_text(t_var *var);
 unsigned int	*getheader(int width, int height, int paddedsize);
 void			writeheader(int fd, unsigned int *headers);
 void			writecolor(t_var *var, int extrabytes, int fd);
