@@ -15,6 +15,7 @@
 
 # define ENDL '\n'
 # define X sizeof
+# define BUFFER_SIZE 100
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/uio.h>

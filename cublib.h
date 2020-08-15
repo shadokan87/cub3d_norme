@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include "gnl_working/get_next_line.h"
 # include "ft_fprintf/lprintf.h"
-# include <mlx.h>
+# include "mlx/mlx.h"
 # include <math.h>
 # include <unistd.h>
 # include <stdint.h>
