@@ -6,7 +6,7 @@
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 13:42:43 by motoure           #+#    #+#             */
-/*   Updated: 2020/08/14 13:42:44 by motoure          ###   ########.fr       */
+/*   Updated: 2020/08/20 00:39:56 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	cls(t_var *var)
 void	draw_info(t_var *var)
 {
 	if (!var->loaded_addr[var->hit])
-		closegame(var,"TEXTURE ERROR ! please check every texture paths are present");
+		closegame(var, "TEXTURE ERROR ! please chec
+		k every texture paths are present");
 	var->lineheight = (int)(var->s_h / var->perpwalldist);
 	var->drawstart = -var->lineheight / 2 + var->s_h / 2;
 	if (var->drawstart < 0)

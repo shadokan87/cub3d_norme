@@ -6,7 +6,7 @@
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 13:42:29 by motoure           #+#    #+#             */
-/*   Updated: 2020/08/14 13:42:30 by motoure          ###   ########.fr       */
+/*   Updated: 2020/08/20 00:39:10 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void			load_text(t_var *var)
 	int t_endian;
 	int fd;
 
-	i = 2;
+	i = 1;
 	if (!(var->loaded_text = malloc(sizeof(int *) * 9)))
 		return ;
 	if (!(var->loaded_addr = malloc(sizeof(int *) * 9)))
 		return ;
-	while (i <= 6)
+	while (++i <= 6)
 	{
 		if (var->text_paths[i] && (fd = open(var->text_paths[i],
 		O_RDONLY)) != -1)
@@ -46,7 +46,6 @@ void			load_text(t_var *var)
 		&& (fd = open(var->text_paths[i], O_RDONLY)) == -1)
 			closegame(var, "TEXT_ERR");
 		!(var->text_paths[i]) ? var->loaded_addr[i] = NULL : 0;
-		i++;
 	}
 }
 
