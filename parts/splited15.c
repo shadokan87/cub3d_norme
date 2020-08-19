@@ -90,3 +90,29 @@ void		init_sprite_var(t_var *var, int sx, int sy)
 	var->drawendx = var->spritewidth / 2 + var->spritescreenx;
 	(var->drawendx >= var->s_w) ? var->drawendx = var->s_w - 1 : 0;
 }
+
+int sip(char *base, char c)
+{
+	int i;
+
+	i = 0;
+	while (base[i])
+	{
+		if (c == base[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ismap(char *str)
+{
+	if (!str)
+		return (0);
+	if (ft_strlen(str) < 3)
+		return (0);
+	if (sip("WENS102", str[0]) && str[1] == ' '
+	&& sip("WENS102", str[2]))
+		return (1);
+	return (0);
+}

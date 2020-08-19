@@ -45,6 +45,7 @@ void			load_text(t_var *var)
 		else if (ft_strlen(var->text_paths[i]) > 0
 		&& (fd = open(var->text_paths[i], O_RDONLY)) == -1)
 			closegame(var, "TEXT_ERR");
+		!(var->text_paths[i]) ? var->loaded_addr[i] = NULL : 0;
 		i++;
 	}
 }

@@ -80,8 +80,8 @@ void		duplicate_map(t_var *var, char **str2)
 				var->spritenum++;
 			if (var->map[y][i] == 4)
 			{
-				var->posx = y + 1.5;
-				var->posy = i + 1;
+				var->posx = y;
+				var->posy = i;
 			}
 		}
 		i = -1;

@@ -143,6 +143,8 @@ void			fillloopparams(t_var *var);
 int				getred(int rgb, t_var *var);
 int				getblue(int rgb, t_var *var);
 int				getgreen(int rgb, t_var *var);
+int				sip(char *base, char c);
+int				ismap(char *str);
 void			pixel_put_fd(t_var *var, int color, int fd);
 void			pixel_put(t_var *var, int x, int y, int color);
 int				verline(t_var *var, int x, int draw_start,

@@ -33,9 +33,10 @@ char	*removes(char *str, t_var *var)
 	int i;
 
 	i = 0;
+	(void)var;
 	while (str[i])
 	{
-		if (getmapindex(var) != -1)
+		if (ismap(str))
 		{
 			if (str[i] == 'S')
 				str[i] = '3';
