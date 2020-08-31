@@ -22,8 +22,12 @@ int	is_arg(char c)
 	while (arg_list[i])
 	{
 		if (c == arg_list[i])
-			return (1);
+			{
+				free(arg_list);
+				return (1);
+			}
 		i++;
 	}
+	free(arg_list);
 	return (0);
 }

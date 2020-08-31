@@ -93,10 +93,12 @@ int		**copymap(int height, int width, int index, t_var *var)
 
 	i = -1;
 	y = 0;
-	map = malloc(sizeof(int *) * height);
+	if (!(map = malloc(sizeof(int *) * height)))
+		return (0);
 	str = ft_split(&var->paramfile[index], '\n');
 	while (++i < height)
-		map[i] = malloc(sizeof(int) * width);
+		if (!(map[i] = malloc(sizeof(int) * width)))
+			return (0);
 	i = 0;
 	while (str[i])
 	{

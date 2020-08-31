@@ -54,8 +54,10 @@ double		*getdist(t_var *var)
 	int		i;
 	double	*dist;
 
-	dist = (double *)malloc(sizeof(double) * var->spritenum);
-	var->spriteorder = malloc(sizeof(int) * var->spritenum);
+	if (!(dist = (double *)malloc(sizeof(double) * var->spritenum)))
+		return (0);
+	if (!(var->spriteorder = malloc(sizeof(int) * var->spritenum)))
+		return (0);
 	i = 0;
 	while (i < var->spritenum)
 	{

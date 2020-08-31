@@ -20,7 +20,8 @@ char	*rmspace(char *str)
 	int		y;
 
 	newsize = ft_strlen(str) * 2;
-	ret = malloc(sizeof(char) * newsize);
+	if (!(ret = malloc(sizeof(char) * newsize)))
+		return (NULL);
 	i = 0;
 	y = 0;
 	while (y < newsize - 1)
