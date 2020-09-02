@@ -23,13 +23,10 @@ void	closegame(t_var *var, char *message)
 		free(var->mlx_win);
 	if (var->addr)
 		free(var->addr);
-	while (++i < var->spritenum && var->spritequeue)
-		var->spritequeue[i] ? free(var->spritequeue[i]) : 0;
-	i = -1;
-	while (var->paramsliced[++i])
+	while (var->paramsliced && var->paramsliced[++i])
 		var->paramsliced[i] ? free(var->paramsliced[i]) : 0;
 	i = 1;
-	while (++i < 7)
+	while (var->text_paths && ++i < 7)
 		var->text_paths[i] ? free(var->text_paths[i]) : 0;
 	message ? ft_fprintf(1, message) : 0;
 	exit(0);

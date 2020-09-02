@@ -53,7 +53,7 @@ void	cls(t_var *var)
 
 void	draw_info(t_var *var)
 {
-	if (!var->loaded_addr[var->hit])
+	if (!var->loaded_addr[var->hit] && !var->screenshot)
 		closegame(var, "TEXTURE_ERROR");
 	var->lineheight = (int)(var->s_h / var->perpwalldist);
 	var->drawstart = -var->lineheight / 2 + var->s_h / 2;

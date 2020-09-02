@@ -28,6 +28,8 @@ void	drawbmp(char *filename, t_var *var)
 	ft_fprintf(fd, "BM");
 	writeheader(fd, headers);
 	writecolor(var, extrabytes, fd);
+	if (fd == -1)
+		closegame(var, "screenshot error please try again");
 	close(fd);
 	closegame(var, "--save done");
 	return ;
