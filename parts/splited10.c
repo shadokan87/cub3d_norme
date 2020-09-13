@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splited10.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:40:33 by motoure           #+#    #+#             */
+/*   Updated: 2020/08/14 13:40:40 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cublib.h"
 
 int			*cpy(t_var *var, int *tab)
@@ -42,8 +54,10 @@ double		*getdist(t_var *var)
 	int		i;
 	double	*dist;
 
-	dist = (double *)malloc(sizeof(double) * var->spritenum);
-	var->spriteorder = malloc(sizeof(int) * var->spritenum);
+	if (!(dist = (double *)malloc(sizeof(double) * var->spritenum)))
+		return (0);
+	if (!(var->spriteorder = malloc(sizeof(int) * var->spritenum)))
+		return (0);
 	i = 0;
 	while (i < var->spritenum)
 	{

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splited1.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:41:48 by motoure           #+#    #+#             */
+/*   Updated: 2020/08/14 13:41:51 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cublib.h"
 
 char	*rmspace(char *str)
@@ -8,7 +20,8 @@ char	*rmspace(char *str)
 	int		y;
 
 	newsize = ft_strlen(str) * 2;
-	ret = malloc(sizeof(char) * newsize);
+	if (!(ret = malloc(sizeof(char) * newsize)))
+		return (NULL);
 	i = 0;
 	y = 0;
 	while (y < newsize - 1)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splited13.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:41:25 by motoure           #+#    #+#             */
+/*   Updated: 2020/08/14 13:41:27 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cublib.h"
 
 int		nospacegetmapindex(char *str)
@@ -21,9 +33,10 @@ char	*removes(char *str, t_var *var)
 	int i;
 
 	i = 0;
+	(void)var;
 	while (str[i])
 	{
-		if (getmapindex(var) != -1)
+		if (ismap(str))
 		{
 			if (str[i] == 'S')
 				str[i] = '3';

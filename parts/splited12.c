@@ -1,22 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splited12.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:41:20 by motoure           #+#    #+#             */
+/*   Updated: 2020/09/07 17:55:32 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cublib.h"
 
-void	fill_color(t_var *var, int i)
+void	check_conf(t_var *var)
 {
-	if (ft_strcmp(var->paramsliced[i], "F"))
+	int i;
+	int ret;
+
+	ret = 0;
+	i = 0;
+	while (var->paramsliced[i])
 	{
-		var->f_color[0] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[0]);
-		var->f_color[1] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[1]);
-		var->f_color[2] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[2]);
-		return ;
+		if ((ft_strcmp(var->paramsliced[i], "R")) ||
+			(ft_strcmp(var->paramsliced[i], "C")) ||
+			(ft_strcmp(var->paramsliced[i], "F")))
+			ret++;
+		if (ret == 3)
+			break ;
+		i++;
 	}
-	if (ft_strcmp(var->paramsliced[i], "C"))
-	{
-		var->c_color[0] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[0]);
-		var->c_color[1] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[1]);
-		var->c_color[2] = ft_atoi(ft_split(var->paramsliced[i + 1], ',')[2]);
-	}
-	else if (i <= 8 && i != 7)
-		var->text_paths[i] = NULL;
+	if (ret != 3)
+		closegame(var, "No Res/Color");
 }
 
 void	fillloopparams(t_var *var)
@@ -24,13 +38,10 @@ void	fillloopparams(t_var *var)
 	int i;
 
 	i = -1;
+	check_conf(var);
 	while (var->paramsliced[++i] != NULL)
 	{
-		if (ft_strcmp(var->paramsliced[i], "R"))
-		{
-			var->s_w = ft_atoi(var->paramsliced[i + 1]);
-			var->s_h = ft_atoi(var->paramsliced[i + 2]);
-		}
+		get_res(var, i);
 		if (ft_strcmp(var->paramsliced[i], "NO"))
 			var->text_paths[2] = ft_strdup(var->paramsliced[i + 1]);
 		if (ft_strcmp(var->paramsliced[i], "SO"))

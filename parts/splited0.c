@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splited0.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:40:00 by motoure           #+#    #+#             */
+/*   Updated: 2020/08/14 13:40:03 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cublib.h"
 
 void		getmapfromparamfile(t_var *var)
@@ -17,12 +29,13 @@ void		getmapfromparamfile(t_var *var)
 	if (!(var->m_height = getmapheight(str)))
 		closegame(var, "MaP_NOT_CLOsEd");
 	str = convspace(str);
+	duplicate_map(var, str);
 	while (str[i])
 	{
 		ft_fprintf(1, "%s\n", str[i]);
+		free(str[i]);
 		i++;
 	}
-	duplicate_map(var, str);
 	if (var->posx == -1 || var->posy == -1)
 		closegame(var, "NO_PLaYER_sTaRT");
 	initspritequeue(var);
@@ -71,6 +84,10 @@ static void	init_struct2(t_var *var)
 	var->mlx_win = NULL;
 	var->mlx_ptr = NULL;
 	var->addr = NULL;
+	var->dist = NULL;
+	var->spriteorder = NULL;
+	var->spritequeue = NULL;
+	var->map = NULL;
 }
 
 void		init_struct(t_var *var, char **argv)
@@ -86,7 +103,6 @@ void		init_struct(t_var *var, char **argv)
 	fd = open(argv[var->screenshot == 1 ? 2 : 1], O_RDONLY);
 	getparamfile(fd, &line, var);
 	getmapfromparamfile(var);
-	initcolormap(var);
 	while (var->paramfile[++i])
 		var->paramfile[i] == '\n' ? (var->paramfile[i] = ' ') : 0;
 	var->paramsliced = ft_split(var->paramfile, ' ');

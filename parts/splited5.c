@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splited5.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:42:17 by motoure           #+#    #+#             */
+/*   Updated: 2020/08/14 13:42:19 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cublib.h"
 
 void	drawbmp(char *filename, t_var *var)
@@ -17,8 +29,23 @@ void	drawbmp(char *filename, t_var *var)
 	writeheader(fd, headers);
 	writecolor(var, extrabytes, fd);
 	close(fd);
-	closegame(var, "--save done");
+	closegame(var, "--save done\nif the image is corrupt, try again");
 	return ;
+}
+
+void	freesprite(t_var *var, int queue)
+{
+	int i;
+
+	i = -1;
+	var->dist ? free(var->dist) : 0;
+	var->spriteorder ? free(var->spriteorder) : 0;
+	if (queue && var->spritequeue)
+	{
+		while (++i < var->spritenum)
+			var->spritequeue[i] ? free(var->spritequeue[i]) : 0;
+		free(var->spritequeue);
+	}
 }
 
 int		screenshot(t_var *var)
@@ -29,6 +56,7 @@ int		screenshot(t_var *var)
 	raycast(var);
 	while (i < var->spritenum)
 	{
+		freesprite(var, 0);
 		var->dist = getdist(var);
 		draw_sprite(var, var->spritequeue[var->spriteorder[i]][0],
 		var->spritequeue[var->spriteorder[i]][1]);
@@ -56,6 +84,7 @@ int		run(t_var *var)
 	raycast(var);
 	while (++i < var->spritenum)
 	{
+		freesprite(var, 0);
 		var->dist = getdist(var);
 		draw_sprite(var, var->spritequeue[var->spriteorder[i]][0],
 		var->spritequeue[var->spriteorder[i]][1]);
@@ -81,10 +110,12 @@ int		**copymap(int height, int width, int index, t_var *var)
 
 	i = -1;
 	y = 0;
-	map = malloc(sizeof(int *) * height);
+	if (!(map = malloc(sizeof(int *) * height)))
+		return (0);
 	str = ft_split(&var->paramfile[index], '\n');
 	while (++i < height)
-		map[i] = malloc(sizeof(int) * width);
+		if (!(map[i] = malloc(sizeof(int) * width)))
+			return (0);
 	i = 0;
 	while (str[i])
 	{

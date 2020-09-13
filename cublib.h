@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cublib.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:43:52 by motoure           #+#    #+#             */
+/*   Updated: 2020/09/07 18:40:42 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBLIB_H
 # define CUBLIB_H
 # include <string.h>
@@ -5,7 +17,7 @@
 # include <stdlib.h>
 # include "gnl_working/get_next_line.h"
 # include "ft_fprintf/lprintf.h"
-# include <mlx.h>
+# include "mlx/mlx.h"
 # include <math.h>
 # include <unistd.h>
 # include <stdint.h>
@@ -82,7 +94,6 @@ typedef struct	s_var
 	int			r_r;
 	void		*img;
 	int			t_endian;
-	int			**colormap;
 	int			t_bpp;
 	int			t_line;
 	int			endian;
@@ -116,6 +127,12 @@ typedef struct	s_var
 	int			**map;
 }				t_var;
 
+int				ismap(char *str);
+int				is_token(char **token, char *str);
+void			freesprite(t_var *var, int queue);
+void			fill_color(t_var *var, int i);
+void			get_res(t_var *var, int i);
+void			check_color(t_var *var, char *str);
 void			closegame(t_var *var, char *message);
 void			*ft_memset(void *b, int c, size_t len);
 int				rgb_int(int red, int green, int blue);
@@ -131,6 +148,8 @@ void			fillloopparams(t_var *var);
 int				getred(int rgb, t_var *var);
 int				getblue(int rgb, t_var *var);
 int				getgreen(int rgb, t_var *var);
+int				sip(char *base, char c);
+int				ismap(char *str);
 void			pixel_put_fd(t_var *var, int color, int fd);
 void			pixel_put(t_var *var, int x, int y, int color);
 int				verline(t_var *var, int x, int draw_start,
@@ -158,7 +177,7 @@ void			x_y(t_var *var);
 void			l_r(t_var *var);
 int				movement(t_var *var);
 int				listen_keys(t_var *var);
-void				load_text(t_var *var);
+void			load_text(t_var *var);
 unsigned int	*getheader(int width, int height, int paddedsize);
 void			writeheader(int fd, unsigned int *headers);
 void			writecolor(t_var *var, int extrabytes, int fd);
@@ -190,7 +209,6 @@ char			**convspace(char **str);
 void			getmapfromparamfile(t_var *var);
 void			checkcolor(t_var *var);
 void			inithextable(t_var *var);
-void			initcolormap(t_var *var);
 void			init_struct(t_var *var, char **argv);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splited9.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:42:43 by motoure           #+#    #+#             */
+/*   Updated: 2020/08/20 00:39:56 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cublib.h"
 
 void	hit(t_var *var)
@@ -41,6 +53,8 @@ void	cls(t_var *var)
 
 void	draw_info(t_var *var)
 {
+	if (!var->loaded_addr[var->hit] && !var->screenshot)
+		closegame(var, "TEXTURE_ERROR");
 	var->lineheight = (int)(var->s_h / var->perpwalldist);
 	var->drawstart = -var->lineheight / 2 + var->s_h / 2;
 	if (var->drawstart < 0)

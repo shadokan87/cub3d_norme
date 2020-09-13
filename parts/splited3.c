@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splited3.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/14 13:41:59 by motoure           #+#    #+#             */
+/*   Updated: 2020/08/14 13:42:00 by motoure          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cublib.h"
 
 static void	initspritequeue2(t_var *var)
@@ -68,8 +80,8 @@ void		duplicate_map(t_var *var, char **str2)
 				var->spritenum++;
 			if (var->map[y][i] == 4)
 			{
-				var->posx = y + 1.5;
-				var->posy = i + 1;
+				var->posx = y;
+				var->posy = i;
 			}
 		}
 		i = -1;
@@ -78,17 +90,19 @@ void		duplicate_map(t_var *var, char **str2)
 
 char		**getmapstr(t_var *var)
 {
-	int		width;
+	int		ret;
 	char	*str;
 	char	**split;
 	char	*ptr;
 
 	str = ft_strdup(var->paramfile);
 	split = ft_split(str, '\n');
-	width = 0;
+	ret = 0;
 	ptr = *split;
-	while (skip(&split))
+	while ((ret = skip(&split)))
 	{
+		if (ret == -1)
+			closegame(var, "Map not found");
 		free(*split);
 		split++;
 	}

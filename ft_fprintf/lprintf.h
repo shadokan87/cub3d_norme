@@ -6,7 +6,7 @@
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:24:58 by motoure           #+#    #+#             */
-/*   Updated: 2020/02/24 10:25:03 by motoure          ###   ########.fr       */
+/*   Updated: 2020/08/15 18:50:01 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_t_curr
 	int			precision;
 	int			width;
 	int			width_type;
-	int		fd;
+	int			fd;
 
 }				t_curr;
 
@@ -78,9 +78,9 @@ void			arg_putnbr(t_curr *flag, va_list args, int *ret);
 void			print_value_d(t_curr *flag, int n, int swap, int *to_ret);
 void			reset_struct(t_curr *flag);
 void			ft_putchar(int fd, char c);
-char            **ft_split(char const *s, char c);
-int     ft_atoi(const char *str);
-int     ft_strlen(const char *str);
-char    *ft_strjoin(char const *s1, char const *s2);
+char			**ft_split(char const *s, char c);
+int				ft_atoi(const char *str);
+int				ft_strlen(const char *str);
+char			*ft_strjoin(char const *s1, char const *s2);
 
 #endif
