@@ -5,34 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/14 13:39:10 by motoure           #+#    #+#             */
-/*   Updated: 2020/09/07 18:32:28 by motoure          ###   ########.fr       */
+/*   Created: 2020/09/13 17:03:20 by motoure           #+#    #+#             */
+/*   Updated: 2020/09/13 17:03:23 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cublib.h"
 
-void    closegame(t_var *var, char *message)
+void	closegame(t_var *var, char *message)
 {
-    int i;
+	int i;
 
-    i = -1;
-    var->mlx_ptr ? free(var->mlx_ptr) : 0;
-    var->mlx_win ? free(var->mlx_win) : 0;
-    var->addr ? free(var->addr) : 0;
-    while (var->paramsliced && var->paramsliced[++i])
-        var->paramsliced[i] ? free(var->paramsliced[i]) : 0;
-    i = 0;
-    var->text_paths ? free(var->text_paths) : 0;
-    var->loaded_addr ? free(var->loaded_addr) : 0;
-    var->loaded_text ? free(var->loaded_text) : 0;
-    freesprite(var, 1);
-    i = -1;
-    while (var->map && ++i < var->m_height)
-            free(var->map[i]);
-    var->map ? free(var->map) : 0;
-    message ? ft_fprintf(1, message) : 0;
-    exit(0);
+	i = -1;
+	var->mlx_ptr ? free(var->mlx_ptr) : 0;
+	var->mlx_win ? free(var->mlx_win) : 0;
+	var->addr ? free(var->addr) : 0;
+	while (var->paramsliced && var->paramsliced[++i])
+		var->paramsliced[i] ? free(var->paramsliced[i]) : 0;
+	i = 0;
+	var->text_paths ? free(var->text_paths) : 0;
+	var->loaded_addr ? free(var->loaded_addr) : 0;
+	var->loaded_text ? free(var->loaded_text) : 0;
+	freesprite(var, 1);
+	i = -1;
+	while (var->map && ++i < var->m_height)
+		free(var->map[i]);
+	var->map ? free(var->map) : 0;
+	message ? ft_fprintf(1, message) : 0;
+	exit(0);
 }
 
 void	dontrun(char *str)

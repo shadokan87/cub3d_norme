@@ -6,7 +6,7 @@
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 13:42:17 by motoure           #+#    #+#             */
-/*   Updated: 2020/08/14 13:42:19 by motoure          ###   ########.fr       */
+/*   Updated: 2020/09/13 17:05:01 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,6 @@ void	drawbmp(char *filename, t_var *var)
 	close(fd);
 	closegame(var, "--save done\nif the image is corrupt, try again");
 	return ;
-}
-
-void	freesprite(t_var *var, int queue)
-{
-	int i;
-
-	i = -1;
-	var->dist ? free(var->dist) : 0;
-	var->spriteorder ? free(var->spriteorder) : 0;
-	if (queue && var->spritequeue)
-	{
-		while (++i < var->spritenum)
-			var->spritequeue[i] ? free(var->spritequeue[i]) : 0;
-		free(var->spritequeue);
-	}
 }
 
 int		screenshot(t_var *var)

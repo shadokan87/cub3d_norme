@@ -5,12 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motoure <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/14 13:41:42 by motoure           #+#    #+#             */
-/*   Updated: 2020/08/20 00:40:42 by motoure          ###   ########.fr       */
+/*   Created: 2020/09/13 17:06:45 by motoure           #+#    #+#             */
+/*   Updated: 2020/09/13 17:07:33 by motoure          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cublib.h"
+
+void		freesprite(t_var *var, int queue)
+{
+	int i;
+
+	i = -1;
+	var->dist ? free(var->dist) : 0;
+	var->spriteorder ? free(var->spriteorder) : 0;
+	if (queue && var->spritequeue)
+	{
+		while (++i < var->spritenum)
+			var->spritequeue[i] ? free(var->spritequeue[i]) : 0;
+		free(var->spritequeue);
+	}
+}
 
 int			skip(char ***split)
 {
